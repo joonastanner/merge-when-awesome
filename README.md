@@ -31,17 +31,13 @@ It is a portable [Agent Skill](https://agentskills.io/specification) for Codex, 
 
 The answer is grounded in a temporary **Awesome Contract**: accepted intent, observable acceptance criteria, owner locks, scope, non-goals, UI impact, risk, required evidence, and merge authority. “Awesome” is therefore demanding without becoming subjective or endless.
 
-```mermaid
-flowchart LR
-    A[Resolve intent] --> B[Capture a truthful baseline]
-    B --> C[Adversarial review]
-    C --> D[Fix verified material issues]
-    D --> E[Prove real behavior]
-    E --> F{Material issue remains?}
-    F -- Yes, within round limit --> C
-    F -- No --> G[Verify exact head and repository gates]
-    G --> H[Merge, arm auto-merge, or stop safely]
-```
+The workflow is deliberately bounded:
+
+1. **Define:** resolve intent and capture a truthful baseline.
+2. **Challenge:** review adversarially and fix verified material issues.
+3. **Prove:** test the behavior at the boundary that actually matters.
+4. **Converge:** repeat only while material issues remain and the round limit allows it.
+5. **Protect:** verify the exact source commit and every repository gate, then merge, arm auto-merge, or stop safely.
 
 ## What makes it different
 
