@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/logo_merge-when-awesome_awesome-face_20260904.svg" alt="Awesome Face" width="112">
+
 # Merge When Awesome
 
 ### A quality ratchet for AI coding agents
@@ -187,11 +189,13 @@ When a provider feature is absent, the skill chooses a truthful fallback. For ex
 merge-when-awesome/
 ├── SKILL.md                         Executable skill contract
 ├── agents/openai.yaml               Optional Codex interface metadata
+├── assets/                          Brand assets
 ├── references/                      Deep guidance and adversarial evals
 ├── scripts/validate.py              Dependency-free package validator
 ├── templates/AWESOME_REPORT.md      Managed PR evidence section
 ├── install.sh                       Safe Codex and Claude Code installer
 ├── tests/test_install.sh            Installer integration tests
+├── THIRD_PARTY_NOTICES.md            Third-party asset attribution
 └── .github/                         CI and contribution templates
 ```
 
@@ -212,4 +216,6 @@ Contributions are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md), follow
 
 ## License
 
-Released under the [MIT License](LICENSE). Copyright © 2026 Joonas Tanner.
+The project code and documentation are released under the [MIT License](LICENSE). Copyright © 2026 Joonas Tanner.
+
+The Awesome Face brand mark is licensed separately under CC BY-SA 3.0. See [Third-Party Notices](THIRD_PARTY_NOTICES.md) for attribution and terms.

@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Changed
+
+- Added the Awesome Face as the project brand mark with complete CC BY-SA 3.0 attribution and source-integrity validation.
+- Replaced the wide README flowchart with a mobile-friendly workflow summary.
+
 ## [1.0.0] - 2026-09-04
 
 ### Added

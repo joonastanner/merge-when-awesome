@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import os
 import re
 import sys
@@ -28,6 +29,7 @@ REQUIRED_FILES = {
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
     "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md",
     "install.sh",
     "tests/test_install.sh",
     "tests/test_portable_copy.py",
@@ -37,6 +39,7 @@ REQUIRED_FILES = {
     ".github/ISSUE_TEMPLATE/idea.yml",
     ".github/ISSUE_TEMPLATE/config.yml",
     "agents/openai.yaml",
+    "assets/logo_merge-when-awesome_awesome-face_20260904.svg",
     "references/awesome-contract.md",
     "references/evidence-and-convergence.md",
     "references/evals.md",
@@ -201,6 +204,12 @@ def main() -> int:
     require(readme, "UI GATE PASS", result)
     require(readme, "references/ui-experience-gate.md", result)
     require(readme, "references/ui-experience-evals.md", result)
+    require(
+        readme,
+        'src="assets/logo_merge-when-awesome_awesome-face_20260904.svg"',
+        result,
+    )
+    require(readme, "THIRD_PARTY_NOTICES.md", result)
 
     contract = SKILL_ROOT / "references" / "awesome-contract.md"
     require(contract, "### UI surface", result)
@@ -257,6 +266,22 @@ def main() -> int:
     license_file = SKILL_ROOT / "LICENSE"
     require(license_file, "MIT License", result)
     require(license_file, "Copyright (c) 2026 Joonas Tanner", result)
+
+    third_party_notices = SKILL_ROOT / "THIRD_PARTY_NOTICES.md"
+    require(third_party_notices, "Original author: East718", result)
+    require(third_party_notices, "Vector contributors: Holly Cheng and Giro720", result)
+    require(third_party_notices, "Creative Commons Attribution-ShareAlike 3.0 Unported", result)
+    require(third_party_notices, "Changes: none", result)
+
+    awesome_face = (
+        SKILL_ROOT / "assets" / "logo_merge-when-awesome_awesome-face_20260904.svg"
+    )
+    if awesome_face.is_file():
+        digest = hashlib.sha1(awesome_face.read_bytes()).hexdigest()
+        if digest != "f8f862084d536b97ff9fb13395e257de675d39f0":
+            result.error(
+                f"{awesome_face}: differs from the attributed Wikimedia Commons source"
+            )
 
     risk = SKILL_ROOT / "references" / "risk-and-merge-policy.md"
     require(risk, "Yellow work may merge autonomously only", result)
