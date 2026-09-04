@@ -1,0 +1,7 @@
+interface:
+  display_name: "Merge When Awesome"
+  short_description: "Improve a code change until it is truly worth shipping"
+  default_prompt: "Use $merge-when-awesome on the current pull request or merge request. Establish its accepted intent, scope, risk, provider capabilities, and evidence contract; fix every verified blocker and material weakness; when any user interface is affected, require the UI experience gate with runtime UX, visual, responsive, and accessibility proof; complete one bounded finish pass; obtain fresh adversarial review; then merge only when the exact reviewed source commit passes every repository and safety gate."
+
+policy:
+  allow_implicit_invocation: false

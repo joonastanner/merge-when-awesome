@@ -1,0 +1,41 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate portable skill
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.9"
+
+      - name: Validate skill package
+        run: python3 scripts/validate.py
+
+      - name: Check shell syntax
+        run: bash -n install.sh tests/test_install.sh
+
+      - name: Test installer
+        run: bash tests/test_install.sh
+
+      - name: Test standalone copy
+        run: python3 tests/test_portable_copy.py

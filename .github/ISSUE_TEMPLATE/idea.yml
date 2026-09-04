@@ -1,0 +1,38 @@
+name: Improvement idea
+description: Propose a focused capability, safety, portability, or quality improvement
+title: "[Idea]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What realistic failure mode or missing capability should be addressed?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example change request
+      description: Describe a sanitized scenario that demonstrates the need.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Smallest useful change
+      description: What behavior should change, and what should remain out of scope?
+    validations:
+      required: true
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Impacted areas
+      options:
+        - label: Activation or permissions
+        - label: Review or convergence
+        - label: UI Experience Gate
+        - label: Evidence or validation
+        - label: Agent-host portability
+        - label: Code-host portability
+        - label: Documentation only
