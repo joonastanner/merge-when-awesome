@@ -154,6 +154,10 @@ The gate covers:
 - hierarchy, copy, spacing, typography, affordances, feedback, and visual coherence;
 - clipping, overflow, layout instability, console errors, failed requests, and stale state.
 
+For interface changes, the implementation includes one bounded `$ui-polish` pass when available, with a compatible skill or embedded checklist as fallback. Independent UI review remains separate.
+
+CI runs and physical-device testing are optional by default. Use meaningful local tests and representative runtime inspection, disclose unperformed checks and hardware limitations, and respect actual repository/host-required checks. The skill does not trigger or wait for optional CI or block solely on unavailable physical hardware.
+
 The skill composes the smallest compatible UI/UX or accessibility specialist available. When no specialist exists, it uses its embedded hostile UI lens. Missing tooling never waives the gate, and the final source commit must earn `UI GATE PASS` before an interface-affecting change can converge. See [the UI Experience Gate](references/ui-experience-gate.md).
 
 ## Safety and authority

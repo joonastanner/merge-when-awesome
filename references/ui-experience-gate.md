@@ -69,6 +69,12 @@ If no compatible specialist skill or fresh context exists, apply the embedded fr
 
 A specialist's design preference is not authority. Verify every finding against the contract, actual runtime, accepted design direction, repository patterns, and user impact before changing code.
 
+## Bounded UI polish implementation
+
+After verifying findings, perform one finish pass on the touched interface using `$ui-polish` when installed and compatible. Read its instructions and give it the accepted design direction, affected surfaces, owner locks, and verified findings. This is authorized implementation within the active merge workflow, separate from the read-only specialist review above. Use another compatible polish capability or the embedded UX and visual checklist when unavailable; do not install a tool just to satisfy the pass.
+
+Preserve product behavior and visual direction. Improve local hierarchy, typography, spacing, copy, interaction feedback, loading/empty/error states, responsive behavior, focus, and accessibility where useful. If the interface already meets the bar, report the inspected areas without manufacturing edits. Reinspect the final runtime and refresh independent review after material changes. Backend-only changes do not require this pass unless they affect the rendered experience.
+
 ## Required runtime evidence
 
 A UI change cannot pass from source inspection, unit tests, snapshots, or a build alone.
@@ -151,7 +157,7 @@ The gate does not demand aesthetic perfection. It demands a defensible shipped-q
 - No browser, application, game, native, or terminal runtime: mark required presentation and interaction evidence `NOT RUN` and do not merge as awesome.
 - No screenshot, recording, or terminal-capture capability: use another trustworthy inspection path. If presentation quality is part of the outcome and no direct inspection is possible, block.
 - No screen reader: use semantic inspection, keyboard testing, and automated checks, but block when the change depends materially on live announcements or screen-reader interaction that cannot be proven.
-- No physical device: label simulator or browser evidence accurately and block when touch, platform accessibility, haptics, audio, or lifecycle behavior requires device proof.
+- No physical device: use representative simulator, emulator, or browser evidence and label it accurately. Record unverified touch, platform accessibility, haptics, audio, and lifecycle behavior as follow-up caveats. Missing physical-device testing alone does not block `UI GATE PASS` unless the current task explicitly requires it; other required runtime and accessibility evidence still applies.
 - No authoritative design artifact: use accepted requirements and the surrounding product. Stop when the missing direction would require a material design choice.
 
 Never replace missing evidence with confidence language.

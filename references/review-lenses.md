@@ -130,7 +130,7 @@ Check:
 - storage versioning, corruption recovery, and data preservation;
 - permission prompts and denied-permission behavior;
 - native bridge error handling and platform differences;
-- physical-device evidence when the claim depends on device behavior.
+- accurately labeled local/simulator evidence and disclosed hardware-specific uncertainty; physical-device testing is an optional follow-up unless explicitly required by the current task.
 
 ### Infrastructure, CI, dependencies, and release
 

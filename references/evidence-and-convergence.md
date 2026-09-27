@@ -24,6 +24,12 @@ Report each planned item as exactly one:
 
 Never convert `NOT RUN` into implied confidence.
 
+## Local proof and optional external runs
+
+CI runs and physical-device testing are optional by default. Choose meaningful local validation and representative browser, simulator, emulator, or desktop runtime evidence. Do not trigger or wait for optional CI, or block convergence solely because CI or physical hardware was not used. Existing CI failures still require triage when they reveal a material defect; host-required checks remain external merge gates. Do not disable or bypass them.
+
+Keep unperformed CI and hardware checks as disclosed `NOT RUN` items outside required evidence unless the current task explicitly requires them. Preserve uncertainty about hardware-specific behavior and narrow claims accordingly. This exception does not waive local/runtime checks, real defects, risk lanes, or review independence.
+
 ## Baseline discipline
 
 Before edits:
@@ -148,7 +154,7 @@ Do not use a microbenchmark to claim end-to-end improvement unless it dominates 
 
 ## Mobile and physical-device claims
 
-Use an actual target device when the outcome depends on:
+Physical-device testing is a follow-up by default, not a merge requirement. Use representative local or simulated evidence and identify unverified hardware behavior, especially for:
 
 - touch latency or gesture recognition;
 - sensors, camera, microphone, haptics, or Bluetooth;
@@ -156,7 +162,7 @@ Use an actual target device when the outcome depends on:
 - native permissions or platform bridges;
 - store packaging, signing, or installation.
 
-Simulator or browser evidence must be labeled accurately.
+Simulator or browser evidence must be labeled accurately. Do not require hardware or block solely on missing device proof unless the current task explicitly requires that test. Do not mark hardware-dependent acceptance claims as device-verified; report the narrower locally verified result and remaining caveat.
 
 ## Documentation and developer tooling
 

@@ -92,6 +92,12 @@ It does not authorize the agent to:
 - count an agent review as a required human or code-owner approval;
 - merge red-risk work without exact additional authorization.
 
+## Validation defaults
+
+Use local tests, builds, static checks, and representative runtime inspection as the default proof. This skill does not require CI runs or physical-device testing. Do not trigger, rerun, or wait for optional CI, and do not make unavailable physical hardware a merge blocker. Record omitted runs as `NOT RUN` with their limitations; never claim device verification from browser, emulator, or simulator evidence.
+
+Inspect existing check results for real defects. Respect checks actually required by the repository or host, without adding CI requirements of this skill's own or disabling branch protection. A new explicit task requirement can add CI or device validation; otherwise hardware-only verification remains a disclosed follow-up, not a prerequisite. Proven defects, required local/runtime evidence, review independence, and exact-source-commit protection still apply.
+
 ## Workflow
 
 ### 1. Resolve the exact change and secure the workspace
@@ -173,7 +179,7 @@ The primary agent owns judgment, not reviewer vote count.
 3. Classify substantive human feedback as `ACTIONABLE`, `ALREADY ADDRESSED`, `NEEDS DISCUSSION`, or `DECLINED WITH EVIDENCE`.
 4. Fix P0 and P1 findings first.
 5. Fix P2 findings unless the fix violates the contract, creates disproportionate scope, or requires an owner decision.
-6. Complete one bounded finish pass for obvious high-value P3 improvements on the touched surface. For UI work, include hierarchy, copy, spacing, responsive or resizing states, affordances, feedback, focus treatment, motion, terminal formatting, and accessibility defects that are clearly local and valuable.
+6. Complete one bounded finish pass for obvious high-value P3 improvements on the touched surface. For UI work, invoke `$ui-polish` when available in implementation mode within the accepted scope; otherwise use a compatible polish skill or the embedded UI checklist. Keep this implementation pass separate from the independent read-only UI review. Include hierarchy, copy, spacing, responsive or resizing states, affordances, feedback, focus treatment, motion, terminal formatting, and accessibility defects that are clearly local and valuable.
 7. Ignore nits unless they are trivial within an already-required edit.
 
 Fix root causes. Prefer repository patterns over new layers. Add a dependency only when its concrete value exceeds its security, licensing, operational, and maintenance cost. Add or strengthen tests that would have caught the issue. Keep code, tests, documentation, migration support, flags, observability, and UI evidence aligned. Do not perform unrelated cleanup or redesign an adjacent experience.
@@ -241,7 +247,7 @@ After a merge attempt:
 1. Confirm the provider reports the change request as merged.
 2. Record the resulting target-branch commit.
 3. Confirm the reviewed source changes are reachable from the target branch.
-4. Inspect immediate target-branch CI and deployment health when available and within scope.
+4. Inspect already-available target-branch CI and deployment health when within scope; do not trigger or wait for optional runs. Report unavailable results as `NOT RUN`.
 5. Report post-merge failure plainly. A successful API response does not prove a healthy result.
 
 Do not deploy, roll back, publish, delete branches, or modify releases unless separately authorized.

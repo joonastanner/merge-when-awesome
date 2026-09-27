@@ -29,6 +29,7 @@
 
 - Affected journeys and states: `<List or NOT APPLICABLE>`
 - Design authority: `<Accepted design, requirement, surrounding-product baseline, or NOT APPLICABLE>`
+- Polish pass: `<ui-polish, compatible skill, embedded checklist, or NOT APPLICABLE; outcome>`
 - Specialist path: `<Skill or embedded lens, plus independence level, or NOT APPLICABLE>`
 - Runtime and viewports: `<Matrix or NOT APPLICABLE>`
 - Keyboard and accessibility: `<Checks and result or NOT APPLICABLE>`

@@ -405,7 +405,7 @@ Expected:
 
 Evidence:
 
-- A Bluetooth lifecycle fix requires a physical device.
+- The current task explicitly requires a physical-device test for a Bluetooth lifecycle fix.
 - Only browser and simulator access exist.
 
 Expected:
@@ -426,3 +426,18 @@ Expected:
 - The agent does not issue a shallow clean verdict.
 - It returns `BLOCKED` with a concrete split or owner-decision recommendation.
 - Safe completed improvements are preserved without pretending the whole change converged.
+
+### Local validation without CI or hardware
+
+Evidence:
+
+- Local regression tests, build, and representative simulator interaction pass.
+- No CI run or physical device is available; neither is explicitly required by the task or host.
+- No material finding remains and the appropriate review independence is satisfied.
+
+Expected:
+
+- The agent does not trigger optional CI or demand hardware access.
+- Omitted runs remain `NOT RUN`; hardware-specific uncertainty is disclosed.
+- These omissions alone do not prevent convergence or merge.
+- If the host requires CI, the agent respects that gate without disabling checks or using an override.

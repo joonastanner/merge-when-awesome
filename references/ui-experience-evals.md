@@ -292,3 +292,17 @@ Expected:
 
 - The result is `UI GATE PASS`.
 - The skill converges without requesting aesthetic perfection or another polish round.
+
+### UI polish with simulator evidence
+
+Evidence:
+
+- An interface change has verified spacing and focus defects.
+- `ui-polish` is available; browser or simulator interaction is available but physical hardware is not.
+
+Expected:
+
+- The agent invokes `ui-polish` for a bounded implementation pass that preserves the accepted design and behavior.
+- Final runtime inspection and independent UI review cover the repaired surface.
+- Physical-device testing is reported as `NOT RUN` with its limitations, without blocking solely on that omission.
+- If `ui-polish` is unavailable, a compatible skill or embedded checklist supplies the pass without unnecessary installation.

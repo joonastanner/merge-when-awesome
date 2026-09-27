@@ -65,6 +65,8 @@ Rationale: <Why this is the correct lane.>
 ### Required evidence
 - <Command, runtime journey, state, viewport, measurement, migration proof, or review>
 
+CI and physical-device runs are optional by default; record omitted runs and hardware limitations as caveats rather than required evidence. Add them only for an explicit current-task requirement; repository/host-required CI remains an external gate.
+
 ### External gates
 - <Required approval, check, merge train or queue, release window, or none>
 
