@@ -157,7 +157,7 @@ The gate does not demand aesthetic perfection. It demands a defensible shipped-q
 - No browser, application, game, native, or terminal runtime: mark required presentation and interaction evidence `NOT RUN` and do not merge as awesome.
 - No screenshot, recording, or terminal-capture capability: use another trustworthy inspection path. If presentation quality is part of the outcome and no direct inspection is possible, block.
 - No screen reader: use semantic inspection, keyboard testing, and automated checks, but block when the change depends materially on live announcements or screen-reader interaction that cannot be proven.
-- No physical device: use representative simulator, emulator, or browser evidence and label it accurately. Record unverified touch, platform accessibility, haptics, audio, and lifecycle behavior as follow-up caveats. Missing physical-device testing alone does not block `UI GATE PASS` unless the current task explicitly requires it; other required runtime and accessibility evidence still applies.
+- No physical device: use representative simulator, emulator, or browser evidence and label it accurately. Record unverified touch, platform accessibility, haptics, audio, and lifecycle behavior. Apply the effective physical-device policy: `when-relevant` blocks device-dependent UI acceptance without real-device proof; `optional` treats the gap as a caveat unless the user or repository requires it. Other runtime and accessibility evidence still applies.
 - No authoritative design artifact: use accepted requirements and the surrounding product. Stop when the missing direction would require a material design choice.
 
 Never replace missing evidence with confidence language.

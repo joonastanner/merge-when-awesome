@@ -119,7 +119,7 @@ Every applicable item must pass against the exact source commit being merged.
 - The source branch is writable and final commits are pushed.
 - Source and target are current as required by repository policy.
 - The provider reports no conflict.
-- Checks or pipelines actually required by the repository or host pass, or trusted pending gates are eligible for host-native auto-merge. This skill adds no CI requirement; absent or optional CI does not prevent merge and does not need to be triggered.
+- Checks or pipelines actually required by the repository or host pass, or trusted pending gates are eligible for host-native auto-merge. Under `ci: standard`, obtain relevant CI evidence when available; under `ci: local-only`, do not trigger or wait for optional CI. Automatic CI triggered by a push and required checks still apply.
 - Required reviews, code-owner approvals, and other human gates are satisfied.
 - Merge queue, merge train, signed commit, linear history, and other repository rules are satisfied.
 - The selected merge method is supported and follows repository convention.

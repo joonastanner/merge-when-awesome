@@ -156,7 +156,15 @@ The gate covers:
 
 For interface changes, the implementation includes one bounded `$ui-polish` pass when available, with a compatible skill or embedded checklist as fallback. Independent UI review remains separate.
 
-CI runs and physical-device testing are optional by default. Use meaningful local tests and representative runtime inspection, disclose unperformed checks and hardware limitations, and respect actual repository/host-required checks. The skill does not trigger or wait for optional CI or block solely on unavailable physical hardware.
+Validation defaults to `ci: standard` and `physical_device: when-relevant`. The skill runs or waits for relevant CI when available and requires physical-device proof for device-dependent acceptance. A local config can opt out of optional CI trigger/wait or make unavailable hardware a disclosed caveat; repository and host-required checks still apply, and pushes may automatically trigger CI.
+
+Put optional local preferences in `${XDG_CONFIG_HOME:-~/.config}/merge-when-awesome/config.json`:
+
+```json
+{"ci": "local-only", "physical_device": "optional"}
+```
+
+Use `python3 scripts/validation_policy.py` to see the effective policy and source. `--config PATH` overrides `MERGE_WHEN_AWESOME_CONFIG`, which overrides the default path. Missing explicitly selected files and invalid settings fail closed. The user's explicit task instructions take priority over local preferences. Keep machine-specific config outside the portable skill directory.
 
 The skill composes the smallest compatible UI/UX or accessibility specialist available. When no specialist exists, it uses its embedded hostile UI lens. Missing tooling never waives the gate, and the final source commit must earn `UI GATE PASS` before an interface-affecting change can converge. See [the UI Experience Gate](references/ui-experience-gate.md).
 
@@ -196,6 +204,7 @@ merge-when-awesome/
 ├── assets/                          Brand assets
 ├── references/                      Deep guidance and adversarial evals
 ├── scripts/validate.py              Dependency-free package validator
+├── scripts/validation_policy.py     Local validation policy resolver
 ├── templates/AWESOME_REPORT.md      Managed PR evidence section
 ├── install.sh                       Safe Codex and Claude Code installer
 ├── tests/test_install.sh            Installer integration tests
@@ -212,6 +221,7 @@ python3 scripts/validate.py
 bash -n install.sh tests/test_install.sh
 bash tests/test_install.sh
 python3 tests/test_portable_copy.py
+python3 tests/test_validation_policy.py
 ```
 
 Changes to workflow semantics should update the relevant adversarial scenarios in [the general eval suite](references/evals.md) or [UI eval suite](references/ui-experience-evals.md). The validator checks structure and safety invariants; it cannot prove that an agent will exercise sound judgment in every repository.

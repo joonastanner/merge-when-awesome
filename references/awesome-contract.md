@@ -65,7 +65,7 @@ Rationale: <Why this is the correct lane.>
 ### Required evidence
 - <Command, runtime journey, state, viewport, measurement, migration proof, or review>
 
-CI and physical-device runs are optional by default; record omitted runs and hardware limitations as caveats rather than required evidence. Add them only for an explicit current-task requirement; repository/host-required CI remains an external gate.
+Record the effective validation policy and its source. With `ci: standard`, include relevant CI when available; `local-only` skips optional CI trigger/wait. With `physical_device: when-relevant`, include real-device proof for device-dependent acceptance; `optional` records missing hardware as a caveat. Explicit user requirements take priority, and repository/host-required checks remain external gates in every mode.
 
 ### External gates
 - <Required approval, check, merge train or queue, release window, or none>

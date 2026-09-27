@@ -92,11 +92,13 @@ It does not authorize the agent to:
 - count an agent review as a required human or code-owner approval;
 - merge red-risk work without exact additional authorization.
 
-## Validation defaults
+## Validation policy
 
-Use local tests, builds, static checks, and representative runtime inspection as the default proof. This skill does not require CI runs or physical-device testing. Do not trigger, rerun, or wait for optional CI, and do not make unavailable physical hardware a merge blocker. Record omitted runs as `NOT RUN` with their limitations; never claim device verification from browser, emulator, or simulator evidence.
+Before building the Awesome Contract, run `python3 scripts/validation_policy.py` from this skill directory and record its effective `ci`, `physical_device`, and source. If resolution fails, stop as `BLOCKED`; never silently opt out. The user's explicit task instructions take priority over this local policy. Repository and host-required checks always apply, and a push may trigger automatic CI regardless of this setting.
 
-Inspect existing check results for real defects. Respect checks actually required by the repository or host, without adding CI requirements of this skill's own or disabling branch protection. A new explicit task requirement can add CI or device validation; otherwise hardware-only verification remains a disclosed follow-up, not a prerequisite. Proven defects, required local/runtime evidence, review independence, and exact-source-commit protection still apply.
+Use local tests, builds, static checks, and representative runtime inspection in every mode. Public defaults are `ci: standard` and `physical_device: when-relevant`: run or wait for relevant CI when available and seek physical-device proof when device-specific behavior is part of the accepted outcome. If required evidence cannot be obtained, mark it `NOT RUN` and stop before merge. Never claim device verification from browser, emulator, or simulator evidence.
+
+`ci: local-only` skips triggering, rerunning, or waiting for optional CI; inspect already available results for real defects. `physical_device: optional` makes unavailable hardware a disclosed caveat rather than a blocker unless the user or repository explicitly requires it. Neither setting weakens required local/runtime evidence, review independence, UI gates, exact-source-commit protection, or real repository checks.
 
 ## Workflow
 
@@ -247,7 +249,7 @@ After a merge attempt:
 1. Confirm the provider reports the change request as merged.
 2. Record the resulting target-branch commit.
 3. Confirm the reviewed source changes are reachable from the target branch.
-4. Inspect already-available target-branch CI and deployment health when within scope; do not trigger or wait for optional runs. Report unavailable results as `NOT RUN`.
+4. Inspect target-branch CI and deployment health when within scope, following the effective validation policy for optional runs. Report unavailable results as `NOT RUN`.
 5. Report post-merge failure plainly. A successful API response does not prove a healthy result.
 
 Do not deploy, roll back, publish, delete branches, or modify releases unless separately authorized.

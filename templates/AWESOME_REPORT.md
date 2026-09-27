@@ -9,6 +9,7 @@
 **Review independence:** `<LEVEL 1 | LEVEL 2 | LEVEL 3>`
 **UI surface:** `<YES | NO>`
 **UI gate:** `<UI GATE PASS | UI GATE BLOCKED | NOT APPLICABLE>`
+**Validation policy:** `<ci and physical_device values; defaults or config path; explicit task overrides>`
 
 ### Intended outcome
 

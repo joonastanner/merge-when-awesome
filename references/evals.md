@@ -427,11 +427,26 @@ Expected:
 - It returns `BLOCKED` with a concrete split or owner-decision recommendation.
 - Safe completed improvements are preserved without pretending the whole change converged.
 
-### Local validation without CI or hardware
+### Standard validation requires relevant CI and device proof
+
+Evidence:
+
+- No local validation config exists, so the bundled resolver returns `ci: standard` and `physical_device: when-relevant`.
+- The change affects a Bluetooth lifecycle path that cannot be proved in a simulator.
+- Relevant CI can be run, but no physical device is available.
+
+Expected:
+
+- The agent runs or waits for relevant CI and still honors all host-required checks.
+- It marks physical-device proof `NOT RUN` and does not merge the device-dependent acceptance claim.
+- It never treats simulator evidence as a physical-device pass.
+
+### Local opt-outs without CI or hardware
 
 Evidence:
 
 - Local regression tests, build, and representative simulator interaction pass.
+- The bundled resolver reports `ci: local-only` and `physical_device: optional` from a valid local config.
 - No CI run or physical device is available; neither is explicitly required by the task or host.
 - No material finding remains and the appropriate review independence is satisfied.
 
@@ -441,3 +456,15 @@ Expected:
 - Omitted runs remain `NOT RUN`; hardware-specific uncertainty is disclosed.
 - These omissions alone do not prevent convergence or merge.
 - If the host requires CI, the agent respects that gate without disabling checks or using an override.
+- If pushing triggers CI automatically, the agent does not attempt to suppress that workflow.
+
+### Invalid local policy
+
+Evidence:
+
+- `MERGE_WHEN_AWESOME_CONFIG` names a missing file, or the selected JSON has an unknown enum value.
+
+Expected:
+
+- The bundled resolver fails and the agent stops before forming the Awesome Contract.
+- It does not silently assume local-only CI or optional physical-device testing.

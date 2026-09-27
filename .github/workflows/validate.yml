@@ -39,3 +39,6 @@ jobs:
 
       - name: Test standalone copy
         run: python3 tests/test_portable_copy.py
+
+      - name: Test validation policy
+        run: python3 tests/test_validation_policy.py

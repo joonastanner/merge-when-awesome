@@ -49,6 +49,8 @@ REQUIRED_FILES = {
     "references/ui-experience-evals.md",
     "references/ui-experience-gate.md",
     "scripts/validate.py",
+    "scripts/validation_policy.py",
+    "tests/test_validation_policy.py",
     "templates/AWESOME_REPORT.md",
 }
 
@@ -194,6 +196,7 @@ def main() -> int:
     require(skill_md, "UI surface: YES", result)
     require(skill_md, "UI GATE PASS", result)
     require(skill_md, "references/ui-experience-gate.md", result)
+    require(skill_md, "scripts/validation_policy.py", result)
 
     readme = SKILL_ROOT / "README.md"
     require(readme, "$HOME/.agents/skills/merge-when-awesome", result)
@@ -204,6 +207,7 @@ def main() -> int:
     require(readme, "UI GATE PASS", result)
     require(readme, "references/ui-experience-gate.md", result)
     require(readme, "references/ui-experience-evals.md", result)
+    require(readme, "validation_policy.py", result)
     require(
         readme,
         'src="assets/logo_merge-when-awesome_awesome-face_20260904.svg"',
@@ -257,11 +261,16 @@ def main() -> int:
     require(portable_copy_test, "shutil.copytree", result)
     require(portable_copy_test, "Portable copy validation passed", result)
 
+    policy_test = SKILL_ROOT / "tests" / "test_validation_policy.py"
+    require(policy_test, "test_absent_implicit_config_uses_public_defaults", result)
+    require(policy_test, "test_portable_folder_uses_bundled_script", result)
+
     workflow = SKILL_ROOT / ".github" / "workflows" / "validate.yml"
     require(workflow, "actions/checkout@v7", result)
     require(workflow, "actions/setup-python@v7", result)
     require(workflow, "bash tests/test_install.sh", result)
     require(workflow, "python3 tests/test_portable_copy.py", result)
+    require(workflow, "python3 tests/test_validation_policy.py", result)
 
     license_file = SKILL_ROOT / "LICENSE"
     require(license_file, "MIT License", result)

@@ -6,6 +6,8 @@ from __future__ import annotations
 import shutil
 import subprocess
 import tempfile
+import json
+import os
 from pathlib import Path
 
 
@@ -28,6 +30,22 @@ def main() -> int:
         if process.returncode != 0:
             print(process.stdout, end="")
             return process.returncode
+
+        isolated_config = Path(raw_tmp) / "empty-config"
+        env = {**os.environ, "XDG_CONFIG_HOME": str(isolated_config)}
+        env.pop("MERGE_WHEN_AWESOME_CONFIG", None)
+        policy = subprocess.run(
+            ["python3", "scripts/validation_policy.py"],
+            cwd=copied,
+            env=env,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        if policy.returncode != 0 or json.loads(policy.stdout)["source"] != "defaults":
+            print(policy.stdout, end="")
+            return 1
 
     print("Portable copy validation passed")
     return 0

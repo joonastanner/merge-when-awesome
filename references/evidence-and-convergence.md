@@ -24,11 +24,11 @@ Report each planned item as exactly one:
 
 Never convert `NOT RUN` into implied confidence.
 
-## Local proof and optional external runs
+## Local proof and external runs
 
-CI runs and physical-device testing are optional by default. Choose meaningful local validation and representative browser, simulator, emulator, or desktop runtime evidence. Do not trigger or wait for optional CI, or block convergence solely because CI or physical hardware was not used. Existing CI failures still require triage when they reveal a material defect; host-required checks remain external merge gates. Do not disable or bypass them.
+Resolve the effective settings with the bundled `scripts/validation_policy.py` before writing the contract. With public `ci: standard`, run or wait for relevant CI when available. With `ci: local-only`, do not trigger, rerun, or wait for optional CI, but inspect existing results and triage material failures. CI required by the repository or host remains a merge gate in either mode; never disable or bypass it. A push may trigger automatic CI regardless of the setting.
 
-Keep unperformed CI and hardware checks as disclosed `NOT RUN` items outside required evidence unless the current task explicitly requires them. Preserve uncertainty about hardware-specific behavior and narrow claims accordingly. This exception does not waive local/runtime checks, real defects, risk lanes, or review independence.
+With public `physical_device: when-relevant`, obtain physical-device proof when the accepted behavior depends on real hardware or platform integration. If that required proof is unavailable, record `NOT RUN` and stop before merge. With `physical_device: optional`, use representative local or simulated evidence and disclose unverified hardware behavior as a caveat unless the user or repository requires a device test. These settings never waive local/runtime checks, real defects, risk lanes, or review independence.
 
 ## Baseline discipline
 
@@ -154,7 +154,7 @@ Do not use a microbenchmark to claim end-to-end improvement unless it dominates 
 
 ## Mobile and physical-device claims
 
-Physical-device testing is a follow-up by default, not a merge requirement. Use representative local or simulated evidence and identify unverified hardware behavior, especially for:
+Use physical-device evidence according to the effective validation policy. Identify unverified hardware behavior, especially for:
 
 - touch latency or gesture recognition;
 - sensors, camera, microphone, haptics, or Bluetooth;
@@ -162,7 +162,7 @@ Physical-device testing is a follow-up by default, not a merge requirement. Use 
 - native permissions or platform bridges;
 - store packaging, signing, or installation.
 
-Simulator or browser evidence must be labeled accurately. Do not require hardware or block solely on missing device proof unless the current task explicitly requires that test. Do not mark hardware-dependent acceptance claims as device-verified; report the narrower locally verified result and remaining caveat.
+Simulator or browser evidence must be labeled accurately. Under `when-relevant`, missing physical proof blocks a device-dependent acceptance claim. Under `optional`, disclose the gap as a caveat unless the user or repository requires the test. Do not mark hardware-dependent acceptance claims as device-verified.
 
 ## Documentation and developer tooling
 

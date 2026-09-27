@@ -299,6 +299,7 @@ Evidence:
 
 - An interface change has verified spacing and focus defects.
 - `ui-polish` is available; browser or simulator interaction is available but physical hardware is not.
+- The effective physical-device policy is `optional`, and the accepted behavior does not require a device test.
 
 Expected:
 
