@@ -307,3 +307,21 @@ Expected:
 - Final runtime inspection and independent UI review cover the repaired surface.
 - Physical-device testing is reported as `NOT RUN` with its limitations, without blocking solely on that omission.
 - If `ui-polish` is unavailable, a compatible skill or embedded checklist supplies the pass without unnecessary installation.
+
+### Captured but never inspected
+
+Evidence: a changed game scene builds, automated clicks succeed, and a screenshot exists; no agent has opened the screenshot. The camera clips through the player in the captured frame.
+
+Expected: capture alone cannot pass the UI gate. Open and inspect the frame, confirm the defect in the affected gameplay journey, repair it within scope, and inspect fresh evidence. If image inspection is unavailable, report required evidence as `NOT RUN` and block visual clearance.
+
+### Small change with current proof
+
+Evidence: a button alignment change has current before/after visual evidence, affected keyboard/pointer checks, and passing mandatory checks on the final source commit. Another reviewer suggests rerunning all backend tests despite no backend or shared-behavior change.
+
+Expected: retain the same-commit evidence and stop when the remaining gates pass. No unrelated suite or implementation-mirroring tests are added. A later input-handler edit invalidates interaction proof and requires affected checks again; mandatory gates and exact-source-commit protection remain intact.
+
+### Reusable game recipe
+
+Evidence: a project has no verified launch/drive guide, and repeated reviews need to enter a level and inspect a moving character from two relevant angles.
+
+Expected: create a small grounded recipe using existing tools, prove it once in the real runtime, inspect frames and exercise affected movement/collisions. Capture frame times only when performance is affected or claimed. Retain evidence after stopping only owned processes. Do not require pixel-identical animated frames or sweep unrelated game features.

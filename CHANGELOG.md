@@ -8,6 +8,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Made visual evidence inspection and reusable real-app verification recipes explicit, including conditional 3D/game checks.
+- Scoped test execution to affected behavior and required gates, reusing current evidence instead of repeating unchanged suites.
 - Added the Awesome Face as the project brand mark with complete CC BY-SA 3.0 attribution and source-integrity validation.
 - Replaced the wide README flowchart with a mobile-friendly workflow summary.
 

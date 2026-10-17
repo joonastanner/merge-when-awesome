@@ -100,6 +100,24 @@ Capture final visual evidence for the main changed state and every materially di
 
 Screenshots, recordings, and terminal captures support judgment but do not replace interaction. Automated browser or terminal checks support interaction but do not replace visual review where visual presentation matters.
 
+### Reuse a real-app verification recipe
+
+First look for the project's existing verification guide, skill, or runnable journey. Follow its exact launch/readiness, input, expected-result, evidence, and teardown steps for the affected feature. Use stable user-facing controls and real user paths; directly setting internal state is not proof that a user can reach that state.
+
+For substantial or repeated work with no usable recipe, record a small project-local guide in the repository's existing documentation convention. Ground it in observed commands and controls, not placeholders: how to start an isolated instance and recognize a usable screen; necessary test data; how to reach the changed feature; actions and observable outcomes; where proof is saved; and how to stop only the processes this run started. Prove the recipe once before calling it reusable. A tiny one-off change needs a concise evidence record, not a new framework or full-app feature inventory.
+
+One agent owns interaction with a shared browser, editor, or game instance. Other reviewers inspect saved evidence or use isolated instances. Keep evidence after cleanup. If a documented path fails, distinguish a stale recipe from a product defect; do not rewrite the expected outcome to hide a regression.
+
+### Inspect what was captured
+
+Open and examine the screenshots or representative recording frames with an image-capable tool. Saving a file, checking its dimensions, or reading DOM text does not count as seeing the rendered result. Compare the relevant before/after states, identify material defects with their visible location and affected journey, fix within scope, then repeat the affected interaction and inspect fresh evidence. If images cannot be inspected, disclose the missing capability and apply the blocked-evidence rule below.
+
+Use image diffs when a stable visual baseline is part of the acceptance contract. Do not require pixel-identical output for animation, antialiasing, or nondeterministic rendering; use controlled scenes, comparable frames, and observable criteria. Preserve the baseline rather than changing it merely to make a check pass.
+
+### Games and spatial presentation
+
+For changed 3D assets or scenes, inspect relevant camera angles and the asset in its intended runtime: scale, materials, lighting, clipping, and silhouette. For motion, inspect animation transitions or representative gameplay frames. Exercise movement, collisions, camera controls, and feedback when affected; a still render cannot prove these. Measure representative frame times when performance is changed or claimed, under comparable conditions. Select checks for the changed risk rather than running every engine test or capturing every possible angle.
+
 ## UX and visual polish
 
 The changed experience should feel deliberate, coherent, and complete at the surrounding product's quality bar.

@@ -190,7 +190,7 @@ Fix root causes. Prefer repository patterns over new layers. Add a dependency on
 
 Follow [references/evidence-and-convergence.md](references/evidence-and-convergence.md). When `UI surface: YES`, also satisfy every applicable requirement in [references/ui-experience-gate.md](references/ui-experience-gate.md).
 
-Use evidence that can fail for realistic defects in the changed surface. Run targeted checks first, then the full relevant suite. Exercise real behavior where static or mocked evidence is insufficient. Record exact commands, environments, and results as `PASS`, `FAIL`, `NOT RUN`, or `NOT APPLICABLE`.
+Use evidence that can fail for realistic defects in the changed surface. Run focused checks and required repository gates; broaden to a full suite only when required or justified by affected shared behavior, failures, or unresolved risk. Reuse passing evidence for the same source commit and environment rather than rerunning it for each reviewer or report. Exercise real behavior where static or mocked evidence is insufficient. Record exact commands, environments, and results as `PASS`, `FAIL`, `NOT RUN`, or `NOT APPLICABLE`.
 
 A UI change cannot pass from source inspection, component tests, snapshots, a build, screenshots or terminal captures alone, or automated accessibility scans alone. Exercise the actual journey, inspect the final presentation at representative supported viewports, platforms, or terminal sizes, verify keyboard and assistive behavior, and check console, network, process, and output integrity as applicable.
 

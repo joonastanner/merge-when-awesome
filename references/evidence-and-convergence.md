@@ -69,7 +69,7 @@ If safe representative execution is unavailable, record `NOT RUN` and treat it a
 
 ## Common evidence for every change request
 
-As applicable:
+Choose the smallest evidence set that covers the changed behavior, realistic failure paths, and mandatory repository gates. This list is a menu by applicability, not a demand to run every command for every edit:
 
 - formatting or repository style check;
 - type checking and static analysis;
@@ -82,6 +82,10 @@ As applicable:
 - repository-specific required checks or pipelines;
 - fresh material review at the independence level required by risk;
 - source commit refreshed immediately before merge.
+
+For each check, know which plausible defect it could expose. Add regression tests for meaningful behavior; do not add assertions that merely restate implementation, count tests as progress, or build a large suite for a reversible presentation-only edit. Visual checks complement tests; they do not establish data integrity, authorization, collision behavior, or performance by themselves.
+
+Reuse a recorded pass when its source commit, inputs, configuration, and runtime still match. Do not rerun an unchanged suite just because another reviewer asks for status or the final report is being written. An edit invalidates affected proof; rerun that proof and any mandatory gates against the new source commit. Expand coverage for a concrete failure, shared boundary, or unresolved risk. Stop when the contract is proven and required gates pass; do not waive required checks or the exact-source-commit rule to save time.
 
 ## Mandatory UI experience evidence
 
@@ -220,7 +224,7 @@ Each round follows this sequence:
 2. verify and prioritize them;
 3. implement one coherent repair set;
 4. run targeted proof;
-5. run full relevant proof;
+5. complete any remaining required or risk-justified broader proof, without repeating already-current passes;
 6. inspect the whole diff;
 7. obtain a fresh adversarial review against the new source commit;
 8. refresh the UI specialist verdict after final material UI changes when `UI surface: YES`.
